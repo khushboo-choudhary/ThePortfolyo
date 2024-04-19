@@ -9,10 +9,11 @@ import Projects from '../components/Projects';
 import Timeline from '../components/Timeline';
 import Testimonial from '../components/Testimonial';
 import Contact from '../components/Contact';
+import CustomCursor from '../components/CustomCursor';
 function Home() {
     const params = useParams();
     const navigate = useNavigate();
-    
+
     const userId = '65b3a22c01d900e96c4219ae'; //John doe
 
     const BASE_URL = 'https://portfolio-backend-30mp.onrender.com/api/v1';
@@ -42,10 +43,9 @@ function Home() {
 
         fetchUserData();
     }, [params?.user, userId, navigate]);
-    console.log(user);
+    // console.log(user);
 
-
-// filtering all the data from the API
+    // filtering all the data from the API
     const sortedFilteredSkills = user?.skills?.filter((item) => item.enabled)?.sort((a, b) => a.sequence - b.sequence);
     const sortedFilteredProject = user?.projects?.filter((item) => item.enabled)?.sort((a, b) => a.sequence - b.sequence);
     const filteredServices = user?.services?.filter((item) => item.enabled);
@@ -55,19 +55,33 @@ function Home() {
     const filteredExperience = user?.timeline?.filter((item) => !item.forEducation && item.enabled);
 
     if (isLoading) {
-        return <div className="w-full h-screen bg-black flex items-center justify-center text-center">Loading..</div>;
+        return (
+            <>
+                <div className="w-full h-screen bg-white flex flex-col items-center justify-center text-center">
+                    <div className="bg-gradient-to-r from-red-500 to-blue-500 text-transparent bg-clip-text text-6xl font-bold">
+                        Welcome to my Universe......
+                    </div>
+                    <div className="mt-4">
+                        <div className="animate-spin rounded-full h-32 w-32 border-4 bg-gradient-to-r from-green-500 to-blue-500 text-white font-bold text-center flex justify-center items-center text-xl">
+                            Loading...
+                        </div>
+                    </div>
+                </div>
+            </>
+        );
     }
     return (
         <>
-            <Header />
-            <Hero />
-            <About />
-            <Skills />
-            <Projects />
-            <Services />
-            <Timeline />
-            <Testimonial />
-            <Contact />
+            <CustomCursor />
+            <Header data={user.about} />
+            <Hero data={user.about} />
+            <About data={user.about} />
+            <Skills data={sortedFilteredSkills} />
+            <Projects data={sortedFilteredProject} />
+            <Services data={filteredServices} />
+            <Timeline education={filteredEducation} experience={filteredExperience} />
+            <Testimonial testimonials={filteredTestimonials} />
+            <Contact socialHandles={filteredSocialHandles} data={user.about} />
         </>
     );
 }
