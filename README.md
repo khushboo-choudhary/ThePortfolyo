@@ -41,15 +41,12 @@ Implemented responsive feature with different screen size.
 
 Implemented the custom cursor and loading page with animation.
 
-### ScreenShots
-
-![responsivedesign](https://github.com/khushboo-choudhary/Heliverse/assets/30701525/6e74e979-33a1-41fb-8833-6b4764d4be90)
-
 ## Screen Shots
 
 - #### Home Page
 
-![HomePage](https://github.com/khushboo-choudhary/ThePortfolyo/assets/30701525/33d095da-67e1-4fe3-9ea2-0b290c6dfbd5)
+![Screenshot 2024-05-26 191720](https://github.com/khushboo-choudhary/ThePortfolyo/assets/30701525/5e55873a-eeba-4574-acc2-2e6fa6c59cf5)
+<br/><br/>
 
 - #### About Section
 
